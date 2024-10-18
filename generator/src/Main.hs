@@ -22,26 +22,26 @@ import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
 
-mySiteName :: String
-mySiteName = "My Site Name"
+siteName :: String
+siteName = "unmaintainable.systems"
 
-mySiteRoot :: String
-mySiteRoot = "https://my-site.com"
+siteRoot :: String
+siteRoot = "https://unmaintainable.systems"
 
 myFeedTitle :: String
-myFeedTitle = "My Feed Title"
+myFeedTitle = "The unmaintainable.systems feed"
 
 myFeedDescription :: String
 myFeedDescription = "My Site Description"
 
 myFeedAuthorName :: String
-myFeedAuthorName = "My Name"
+myFeedAuthorName = "matthew liam healy"
 
 myFeedAuthorEmail :: String
-myFeedAuthorEmail = "me@myemail.com"
+myFeedAuthorEmail = "todo@unmaintainable.systems"
 
 myFeedRoot :: String
-myFeedRoot = mySiteRoot
+myFeedRoot = siteRoot
 
 --------------------------------------------------------------------------------
 -- CONFIG
@@ -107,9 +107,9 @@ main = hakyllWith config $ do
 
       let indexCtx =
             listField "posts" postCtx (return posts)
-              <> constField "root" mySiteRoot
+              <> constField "root" siteRoot
               <> constField "feedTitle" myFeedTitle
-              <> constField "siteName" mySiteName
+              <> constField "siteName" siteName
               <> defaultContext
 
       getResourceBody
@@ -126,8 +126,8 @@ main = hakyllWith config $ do
 
       let pages = posts
           sitemapCtx =
-            constField "root" mySiteRoot
-              <> constField "siteName" mySiteName
+            constField "root" siteRoot
+              <> constField "siteName" siteName
               <> listField "pages" postCtx (return pages)
 
       makeItem ("" :: String)
@@ -163,9 +163,9 @@ feedCtx =
 
 postCtx :: Context String
 postCtx =
-  constField "root" mySiteRoot
+  constField "root" siteRoot
     <> constField "feedTitle" myFeedTitle
-    <> constField "siteName" mySiteName
+    <> constField "siteName" siteName
     <> dateField "date" "%Y-%m-%d"
     <> defaultContext
 
