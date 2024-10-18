@@ -27,13 +27,25 @@
               src = ./generator;
               compiler-nix-name = "ghc948";
               modules = [{ doHaddock = false; }];
-              shell.buildInputs = [
-                generator
-              ];
+
               shell = {
                 shellHook = ''
                   ${pre-commit.shellHook}
                 '';
+
+                buildInputs =
+                  let
+                    # helix expects hls to be named haskell-language-server-wrapper
+                    # and for now this seems easier than trying to change helix's
+                    # expectations.
+                    hlsWrapper = pkgs.writeShellScriptBin "haskell-language-server-wrapper" ''
+                      haskell-language-server "$@"
+                    '';
+                  in
+                  [
+                    hlsWrapper
+                    generator
+                  ];
 
                 tools = {
                   cabal = "latest";
