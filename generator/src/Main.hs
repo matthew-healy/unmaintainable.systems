@@ -54,7 +54,7 @@ config =
       ignoreFile = ignoreFile',
       previewHost = "127.0.0.1",
       previewPort = 8000,
-      providerDirectory = "src",
+      providerDirectory = "site",
       storeDirectory = "generator/_cache",
       tmpDirectory = "generator/_tmp"
     }

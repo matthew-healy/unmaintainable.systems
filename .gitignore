@@ -1,3 +1,5 @@
 .pre-commit-config.yaml
 .direnv
 generator/dist-newstyle
+dist/
+generator/_cache
